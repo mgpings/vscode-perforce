@@ -121,7 +121,7 @@
                 },
                 "perforce.editOnFileSave": {
                     "type": "boolean",
-                    "default": false,
+                    "default": true,
                     "description": "Automatically open a file for edit when saved"
                 },
                 "perforce.editOnFileModified": {
@@ -131,12 +131,12 @@
                 },
                 "perforce.addOnFileCreate": {
                     "type": "boolean",
-                    "default": false,
+                    "default": true,
                     "description": "Automatically Add a file to depot when Created"
                 },
                 "perforce.deleteOnFileDelete": {
                     "type": "boolean",
-                    "default": false,
+                    "default": true,
                     "description": "Automatically delete a file from depot when deleted"
                 },
                 "perforce.annotate.followBranches": {
@@ -2047,7 +2047,7 @@
         "glob": "^7.1.6",
         "javascript-time-ago": "^2.0.7",
         "micromatch": "^4.0.2",
-        "mocha": "^7.1.2",
+        "mocha": "^10.8.2",
         "mocha-junit-reporter": "^1.23.3",
         "prettier": "^2.0.5",
         "sinon": "^9.0.0",

@@ -19,6 +19,7 @@ import { isTruthy } from "./TsUtils";
 import { registerChangelistSearch } from "./search/ChangelistTreeView";
 import { createSpecEditor } from "./SpecEditor";
 import { clearAllMementos } from "./MementoItem";
+import { ClientManager } from "./ClientManager";
 
 let _isRegistered = false;
 const _disposable: vscode.Disposable[] = [];
@@ -41,6 +42,8 @@ export type ClientRoot = {
 
 async function findClientRoot(uri: vscode.Uri): Promise<ClientRoot | undefined> {
     try {
+        await ClientManager.updateClientMap(uri);
+
         const info = await p4.getInfo(uri, {});
         const rootStr = info.get("Client root");
         if (rootStr) {

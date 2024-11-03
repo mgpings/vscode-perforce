@@ -19,6 +19,7 @@ import spawn from "cross-spawn";
 import { CommandLimiter } from "./CommandLimiter";
 import * as Path from "path";
 import { configAccessor } from "./ConfigService";
+import { ClientManager } from "./ClientManager";
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace PerforceService {
@@ -75,11 +76,13 @@ export namespace PerforceService {
     function getPerforceCmdParams(resource: Uri): string[] {
         const config = workspace.getConfiguration("perforce", resource);
         const p4User = config.get("user", "none");
-        const p4Client = config.get("client", "none");
+        // const p4Client = config.get("client", "none");
         const p4Port = config.get("port", "none");
         const p4Pass = config.get("password", "none");
         const p4Dir = config.get("dir", "none");
         const p4Charset = config.get("charset", "none");
+
+        const p4Client = ClientManager.getClient(resource);
 
         const ret: string[] = [];
 
@@ -309,7 +312,7 @@ export namespace PerforceService {
                 }
             });
         } catch (err) {
-            responseCallback(err, "", "");
+            responseCallback(err as Error, "", "");
         }
     }
 
